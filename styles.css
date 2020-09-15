@@ -1,0 +1,397 @@
+body{
+    box-sizing: border-box;
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/****************************** navigation bar for the homepage*********************/
+
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+
+    background-color: #E54F6D;
+    box-shadow: 0 0 4px 3px lightgray;
+}
+
+.logo{
+    width: 100px;
+    padding: 10px;
+    margin: 5px 0;
+    margin-right: 25%;
+}
+
+nav ul{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    padding:10px 0; 
+
+    list-style: none;
+    font-size: 1.2em;
+}
+
+nav ul li{
+    padding: 10px 25px;
+    border-radius: 5px;
+    margin: 5px 10px;
+}
+
+
+nav ul li:hover{
+    transition: background-color 0.8s ease;
+    color: #644d75;
+    background-color: white;
+}
+
+nav ul li a{
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px;
+
+    color: white;
+    font-weight: 500;
+}
+
+nav ul li a:hover{
+    transition: color 0.5s ease;
+    color: #644d75;
+}
+
+nav ul li a.login{
+    padding: 10px 35px;
+    border-radius: 10px;
+    text-decoration: none;
+
+    background-color: white;
+    color: #E54F6D;
+}
+
+nav ul li a.login:hover{
+    box-shadow: 0 0 7px 1px white;
+
+    color: #E54F6D;
+    background-color: white;
+}
+
+li.loginLi:hover{
+    background-color: #E54F6D;
+}
+
+
+/*******************************nav for other pages**************/
+
+nav.otherpages{
+    background-color: white;
+}
+
+nav ul li a.otherpages{
+    padding: 12px 16px;
+    border-radius: 6px;
+    color: #E54F6D;
+}
+
+nav ul li a.otherpages:hover{
+    color: white;
+    transition: background-color 0.8s ease-in-out;
+    background-color: #E54F6D;
+}
+
+/******************************* header **************************/
+
+header{
+    display: flex;
+}
+
+header .mainImage{
+    margin: 16vh 30px 9vh 100px;
+    height: 75vh;
+}
+
+header div.mainText{
+    margin: 18vh 100px;
+    font-size: 7em;
+}
+
+.boldMainText{
+    font-size: 1.4em;
+    line-height: 1.3em;
+
+    font-family: 'Bungee Shade';
+    color: #644d75;
+}
+
+/****************************** posts ******************************/
+
+.blogTitle{
+    padding: 30px;
+    margin: 0 100px;
+    margin-bottom: 50px;
+
+    background-color: white;
+    color: #E54F6D;
+    border: 1px solid #E54F6D;
+
+    font-family: 'Bungee Shade';
+    text-align: center;
+    font-size: 4em;
+}
+
+.postsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 50px 0;
+}
+
+.postContainer{
+    display: flex;
+    align-items: center;
+    width: 50vw;
+    margin: 20px;
+    
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.postContainer:hover{
+    cursor: pointer;
+
+    transition: box-shadow 0.5s ease;
+    box-shadow: 0 7px 15px 6px lightgray;
+}
+
+.postImage{
+    height: 150px;
+    padding: 30px 40px;
+}
+
+.postTitle{
+    padding: 10px 20px;
+    margin: 10px 20px;
+
+    font-size: 2.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2em;
+    letter-spacing: .1em;
+
+    color: #644d75;
+}
+
+.PostDescription{
+    padding: 10px 20px;
+    margin: 10px 20px;
+    font-size: 1.1em;
+
+    color: rgb(102, 102, 102);
+}
+
+/****************************** services ***********************************/
+
+.servicesTitle{
+    padding: 30px;
+    margin: 0 100px;
+    margin-bottom: 50px;
+
+    background-color: white;
+    color: #E54F6D;
+    border: 1px solid #E54F6D;
+
+    font-family: 'Bungee Shade';
+    text-align: center;
+    font-size: 4em;
+}
+
+.servicesContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 50px 0;
+}
+
+.serviceContainer{
+    display: flex;
+    align-items: center;
+    width: 60vw;
+    margin: 20px;
+    
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+
+.serviceContainer:hover{
+    cursor: pointer;
+
+    transition: box-shadow 0.5s ease;
+    box-shadow: 0 7px 15px 6px lightgray;
+}
+
+.serviceImage{
+    height: 250px;
+    padding: 50px;
+}
+.serviceTitle{
+    padding: 10px 20px;
+    margin: 10px 20px;
+
+    font-size: 2.5em;
+    font-weight: 600;
+    line-height: 1.2em;
+    letter-spacing: .1em;
+    color: #644d75;
+    text-transform: uppercase;    
+}
+
+.serviceDescription{
+    padding: 10px 20px;
+    margin: 10px 20px;
+    font-size: 1.1em;
+
+    color: rgb(102, 102, 102);
+}
+
+.servicePricing{
+    padding: 10px 20px;
+    margin: 10px 20px;
+
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #E54F6D;
+}
+
+/****************************** form  ********************************/
+.contactTitle{
+    padding: 30px;
+    margin: 0 100px;
+    margin-bottom: 50px ;
+
+    font-size: 4em;
+    text-align: center;
+    font-family: "Bungee Shade";
+
+    color: #E54F6D;
+    border: 1px solid #E54F6D;
+    background-color: white;
+}
+
+.formContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 60%;
+    margin: 150px auto;
+    border-radius: 10px;
+
+    box-shadow: 0 0 3px 2px lightgray;
+}
+
+.sideImage{
+    height: 300px;
+    padding: 80px;
+    margin: 20px;
+}
+
+form{
+    background-color: #E54F6D;
+    padding: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input.input{
+    display: block;
+    padding: 15px;
+    margin: 10px auto;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
+
+form button{
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 5px;
+
+    color: #644d75;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+form button:hover{
+    transition: background-color 0.8s ease;
+    background-color: #644d75;
+
+    color: white;
+    transition: color 0.5s ease;
+}
+/****************************** footer *************************************/
+footer{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    
+    padding: 10px;
+    margin-top: 50px;   
+    box-shadow: 0 0 5px 3px lightgray;
+}
+
+.siteMap,.social,.usefulLinks{
+    display: flex;
+    flex-direction: column;
+   
+    padding: 10px; 
+}
+.linkTitle{
+    padding: 8px 13px;
+    margin: 2px 35px;
+
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgb(77, 77, 77);
+    font-size: 1.2em;
+}
+
+footer a{
+    padding: 8px 13px;
+    margin: 2px 35px;
+    
+    letter-spacing: 1px;
+    font-size: 1em;
+    text-decoration: none;
+    
+    color: rgb(121, 121, 121);
+    border-radius: 5px;
+}
+
+footer a:hover{
+    transition: color 0.2s ease;
+    color:white;
+    
+    transition: background-color .8s ease;
+    background-color: #E54F6D;
+}
+
+/****************************** media queries ******************************/
+
+/* tab view */
+
+@media only screen and (max-width: 1460px) {
+    div.gridContainer{
+        grid-template-columns: 1fr 1fr;
+    }
+  }
+
+/* mobile view */

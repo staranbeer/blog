@@ -1,0 +1,47 @@
+.articleBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    font-size: 3em;
+    color: white;
+}
+
+.heading{
+    background-color: #E54F6D;
+    text-align: center;
+    padding: 8vh 0 3vh 0;
+    margin: 40px 0;
+}
+
+.description{
+    width: 70%;
+    padding: 0;
+    margin: 0px 50px;
+    padding-bottom: 40px;
+    text-align: center;
+    color: #8f8f8f;
+    font-size: 1.1em;
+}
+
+p{  color: rgb(116, 116, 116);
+    font-size: .9em;
+    letter-spacing: 1.2px;
+    line-height: 1.5em;
+    padding: 10px;
+    width: 40%;
+}
+img{
+    width: 40%;
+    margin: 10px;
+}
+
+h3{ 
+    color: #E54F6D;
+    font-size: 2em;
+    align-self: center;
+    
+}
