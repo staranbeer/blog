@@ -51,7 +51,8 @@ const Slug = (props) => {
 export async function getStaticProps({ params }) {
   try {
     const { slug } = params;
-    let res = await fetch(`${process.env.URL}/api/blog/${slug}`);
+    let res = await fetch(`blog-o3gxal4py-staranbeer.vercel.app
+/api/blog/${slug}`);
     res = await res.json();
     res = res.data;
     console.log(params);
@@ -78,7 +79,8 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths({ params }) {
   try {
-    const res = await fetch(`${process.env.URL}/api/blog`);
+    const res = await fetch(`blog-o3gxal4py-staranbeer.vercel.app
+/api/blog`);
     let blogs = await res.json();
     console.log(params);
     blogs = await blogs.data;
