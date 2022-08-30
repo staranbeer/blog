@@ -11,7 +11,7 @@ const Index = ({ blogs }) => {
     return <div>nothing found</div>;
   }
   return (
-    <div className="p-4 sm:p-8 max-w-3xl mx-auto">
+    <>
       <Header />
       <Hero />
       <Filters />
@@ -20,11 +20,11 @@ const Index = ({ blogs }) => {
       <BlogList blogs={blogs} />
 
       <div className="pagination"></div>
-      <footer className="flex justify-between items-center">
+      <footer className="flex justify-between items-center p-4">
         <div className="footer__left">left</div>
         <div className="footer__right">right</div>
       </footer>
-    </div>
+    </>
   );
 };
 
