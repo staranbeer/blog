@@ -1,3 +1,10 @@
+import { useRouter } from "next/router";
+import { useLayoutEffect } from "react";
+
 export default function Home() {
-  return <h1>Hello world</h1>;
+  const router = useRouter();
+  useLayoutEffect(() => {
+    router.push("/blog");
+  }, []);
+  return <div>hey</div>;
 }
