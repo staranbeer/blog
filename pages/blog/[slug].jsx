@@ -21,8 +21,10 @@ const Slug = (props) => {
           <p className="whitespace-nowrap">
             Image by {image.photographer} on{" "}
             <a
+              target={"_blank"}
               href="https://pexels.com"
-              className=" flex items-center gap-1 whitespace-nowrap"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 whitespace-nowrap"
             >
               pexels
               <HiOutlineExternalLink />
@@ -51,11 +53,15 @@ const Slug = (props) => {
 export async function getStaticProps({ params }) {
   try {
     const { slug } = params;
-    let res = await fetch(`blog-o3gxal4py-staranbeer.vercel.app
-/api/blog/${slug}`);
+    const BASE_URL =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : process.env.VERCEL_URL;
+    let res = await fetch(`${BASE_URL}/api/blog/${slug}`);
     res = await res.json();
     res = res.data;
     console.log(params);
+    console.log(process.env.NODE_ENV);
     let image = await fetch(
       "https://api.pexels.com/v1/search?query=animals&page=1&per_page=1",
       {
@@ -79,10 +85,13 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths({ params }) {
   try {
-    const res = await fetch(`blog-o3gxal4py-staranbeer.vercel.app
-/api/blog`);
+    const BASE_URL =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : process.env.VERCEL_URL;
+    const res = await fetch(`${BASE_URL}/api/blog`);
     let blogs = await res.json();
-    console.log(params);
+    console.log(process.env.URL);
     blogs = await blogs.data;
     const paths = JSON.parse(blogs).map((blog) => ({
       params: {
