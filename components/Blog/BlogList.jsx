@@ -6,7 +6,7 @@ const BlogList = ({ blogs }) => {
     <div>Nothing found</div>;
   }
   return (
-    <div className="bg-gray-100 grid md:grid-cols-2  gap-4 p-5">
+    <div className=" grid sm:grid-cols-2  gap-10 py-5">
       {blogs.map(({ title, content, slug, id }) => {
         return (
           <BlogItem slug={slug} title={title} key={id} content={content} />

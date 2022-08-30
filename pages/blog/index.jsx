@@ -5,23 +5,25 @@ import Header from "../../components/Header/Header";
 import Hero from "../../components/Hero/Hero";
 import Filters from "../../components/Filters/Filters";
 import Featured from "../../components/Featured/Featured";
-import FeaturedContainer from "../../components/Featured/FeaturedContainer";
 
 const Index = ({ blogs }) => {
   if (!blogs) {
     return <div>nothing found</div>;
   }
   return (
-    <div className="p-4 sm:p-8 max-w-4xl mx-auto">
+    <div className="p-4 sm:p-8 max-w-3xl mx-auto">
       <Header />
       <Hero />
       <Filters />
       {/* featured carousal */}
-      <FeaturedContainer />
+      <Featured />
       <BlogList blogs={blogs} />
 
       <div className="pagination"></div>
-      <footer>Contact Us</footer>
+      <footer className="flex justify-between items-center">
+        <div className="footer__left">left</div>
+        <div className="footer__right">right</div>
+      </footer>
     </div>
   );
 };
