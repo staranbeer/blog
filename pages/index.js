@@ -5,6 +5,6 @@ export default function Home() {
   const router = useRouter();
   useLayoutEffect(() => {
     router.push("/blog");
-  }, []);
+  }, [router]);
   return <div>hey</div>;
 }
