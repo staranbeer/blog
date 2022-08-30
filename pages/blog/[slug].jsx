@@ -49,41 +49,51 @@ const Slug = (props) => {
 };
 
 export async function getStaticProps({ params }) {
-  const { slug } = params;
-  let res = await fetch(`${process.env.URL}/api/blog/${slug}`);
-  res = await res.json();
-  res = res.data;
-  let image = await fetch(
-    "https://api.pexels.com/v1/search?query=animals&page=1&per_page=1",
-    {
-      headers: {
-        Authorization: `${process.env.PEXELS_API_KEY}`,
+  try {
+    const { slug } = params;
+    let res = await fetch(`${process.env.URL}/api/blog/${slug}`);
+    res = await res.json();
+    res = res.data;
+    console.log(params);
+    let image = await fetch(
+      "https://api.pexels.com/v1/search?query=animals&page=1&per_page=1",
+      {
+        headers: {
+          Authorization: `${process.env.PEXELS_API_KEY}`,
+        },
       },
-    },
-  );
+    );
 
-  image = await image.json();
-  image = await image.photos;
-  return {
-    props: {
-      data: { ...res, image: image[0] },
-    },
-  };
+    image = await image.json();
+    image = await image.photos;
+    return {
+      props: {
+        data: { ...res, image: image[0] },
+      },
+    };
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.URL}/api/blog`);
-  let blogs = await res.json();
-  blogs = await blogs.data;
-  const paths = JSON.parse(blogs).map((blog) => ({
-    params: {
-      slug: blog.slug,
-    },
-  }));
-  return {
-    paths: paths,
-    fallback: false,
-  };
+export async function getStaticPaths({ params }) {
+  try {
+    const res = await fetch(`${process.env.URL}/api/blog`);
+    let blogs = await res.json();
+    console.log(params);
+    blogs = await blogs.data;
+    const paths = JSON.parse(blogs).map((blog) => ({
+      params: {
+        slug: blog.slug,
+      },
+    }));
+    return {
+      paths: paths,
+      fallback: false,
+    };
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export default Slug;
