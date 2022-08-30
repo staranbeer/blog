@@ -16,7 +16,9 @@ const Filters = () => {
       {/* tags */}
       <div className="flex items-center flex-wrap gap-3">
         {tags.map((tag) => (
-          <button className="px-5 py-2 rounded-full bg-gray-100">{tag}</button>
+          <button key={tag} className="px-5 py-2 rounded-full bg-gray-100">
+            {tag}
+          </button>
         ))}
       </div>
     </div>

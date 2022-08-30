@@ -1,9 +1,8 @@
 import Image from "next/image";
 import React from "react";
-
+import { HiOutlineExternalLink } from "react-icons/hi";
 const Slug = (props) => {
   const { title, content, image } = props.data;
-  console.log(image);
   if (!props.data) {
     return <div>Nothing found</div>;
   }
@@ -11,18 +10,24 @@ const Slug = (props) => {
     <div className=" ">
       {/* thumbnail */}
       <div className="relative bg-blue-400">
-        <div className="w-full relative h-[400px]">
+        <div className="w-full h-[400px]">
           <img
             src={image.src.landscape}
             alt={image.alt}
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="absolute bottom-0 px-1 m-1 right-0 bg-white">
-          Image by {image.photographer} on{" "}
-          <a href="https://pexels.com" className="underline">
-            pexels
-          </a>
+        <div className="absolute bottom-0 px-1 m-1 right-0 bg-white ">
+          <p className="whitespace-nowrap">
+            Image by {image.photographer} on{" "}
+            <a
+              href="https://pexels.com"
+              className=" flex items-center gap-1 whitespace-nowrap"
+            >
+              pexels
+              <HiOutlineExternalLink />
+            </a>
+          </p>
         </div>
       </div>
       {/* title */}
@@ -49,7 +54,7 @@ export async function getStaticProps({ params }) {
   res = await res.json();
   res = res.data;
   let image = await fetch(
-    "https://api.pexels.com/v1/search?query=nature&page=1&per_page=1",
+    "https://api.pexels.com/v1/search?query=animals&page=1&per_page=1",
     {
       headers: {
         Authorization: `${process.env.PEXELS_API_KEY}`,
