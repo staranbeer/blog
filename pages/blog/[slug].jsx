@@ -1,5 +1,6 @@
-import Image from "next/image";
 import React from "react";
+import fs from "fs";
+import path from "path";
 import { HiOutlineExternalLink } from "react-icons/hi";
 const Slug = (props) => {
   const { title, content, image } = props.data;
@@ -53,15 +54,12 @@ const Slug = (props) => {
 export async function getStaticProps({ params }) {
   try {
     const { slug } = params;
-    const BASE_URL =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000"
-        : process.env.VERCEL_URL;
-    let res = await fetch(`${BASE_URL}/api/blog/${slug}`);
-    res = await res.json();
-    res = res.data;
-    console.log(params);
-    console.log(process.env.NODE_ENV);
+    const content = fs.readFileSync(
+      path.join(process.cwd(), "data", "blogs.json"),
+      "utf8",
+    );
+
+    const res = JSON.parse(content).filter((item) => item.slug === slug)[0];
     let image = await fetch(
       "https://api.pexels.com/v1/search?query=animals&page=1&per_page=1",
       {
@@ -79,32 +77,27 @@ export async function getStaticProps({ params }) {
       },
     };
   } catch (err) {
-    console.log(err);
+    return {
+      props: {},
+    };
   }
 }
 
 export async function getStaticPaths({ params }) {
-  try {
-    const BASE_URL =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000"
-        : process.env.VERCEL_URL;
-    const res = await fetch(`${BASE_URL}/api/blog`);
-    let blogs = await res.json();
-    console.log(process.env.URL);
-    blogs = await blogs.data;
-    const paths = JSON.parse(blogs).map((blog) => ({
-      params: {
-        slug: blog.slug,
-      },
-    }));
-    return {
-      paths: paths,
-      fallback: false,
-    };
-  } catch (err) {
-    console.log(err);
-  }
+  const pathsFile = fs.readFileSync(
+    path.join(process.cwd(), "data", "blogs.json"),
+    "utf8",
+  );
+  const paths = JSON.parse(pathsFile).map((blog) => ({
+    params: {
+      slug: blog.slug || [],
+    },
+  }));
+  console.log(paths);
+  return {
+    paths: paths,
+    fallback: false,
+  };
 }
 
 export default Slug;
