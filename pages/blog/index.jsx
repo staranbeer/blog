@@ -1,10 +1,8 @@
 import React from "react";
-import { env } from "process";
 import BlogList from "../../components/Blog/BlogList";
 import Header from "../../components/Header/Header";
 import fs from "fs";
 import path from "path";
-
 import Hero from "../../components/Hero/Hero";
 import Filters from "../../components/Filters/Filters";
 import Featured from "../../components/Featured/Featured";
@@ -32,20 +30,16 @@ const Index = ({ blogs }) => {
 };
 
 export async function getStaticProps() {
-  try {
-    let res;
-    res = fs.readFileSync(
-      path.join(process.cwd(), "data", "blogs.json"),
-      "utf8",
-    );
-    return {
-      props: {
-        blogs: JSON.parse(res.data),
-      },
-    };
-  } catch (err) {
-    console.log(err.message);
-  }
+  let res = fs.readFileSync(
+    path.join(process.cwd(), "data", "blogs.json"),
+    "utf8",
+  );
+  res = JSON.parse(res);
+  return {
+    props: {
+      blogs: res,
+    },
+  };
 }
 
 export default Index;

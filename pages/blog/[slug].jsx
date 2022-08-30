@@ -58,7 +58,6 @@ export async function getStaticProps({ params }) {
       path.join(process.cwd(), "data", "blogs.json"),
       "utf8",
     );
-
     const res = JSON.parse(content).filter((item) => item.slug === slug)[0];
     let image = await fetch(
       "https://api.pexels.com/v1/search?query=animals&page=1&per_page=1",
