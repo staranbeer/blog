@@ -1,25 +1,26 @@
 import Link from "next/link";
 import React from "react";
-import { HiOutlineClock, HiOutlineUser } from "react-icons/hi";
 const BlogItem = ({ title, slug, image, content }) => {
   return (
     <Link href={`/blog/${slug}`}>
-      <article className="post cursor-pointer">
-        <div className="aspect-square   bg-white overflow-hidden  ">
+      <article className="post cursor-pointer  shadow-md py-10 p-6">
+        <div className="aspect-square sm:aspect-video relative  bg-white overflow-hidden  ">
           <img
-            src={image?.download_url || ""}
+            src={image?.src || ""}
             alt={`decorative image by - ${image?.author}`}
             className="post__image object-cover h-full w-full"
           />
+          <div className="post__image-tags absolute w-full h-full bg-[#0009] left-0 top-0 grid place-items-center opacity-0 transition-all">
+            <div className="flex gap-4">
+              <div className="tag bg-white">design</div>
+              <div className="tag bg-white">development</div>
+            </div>
+          </div>
         </div>
         <div className="px-1 mt-auto  ">
-          <h3 className="my-5 text-xl capitalize font-medium text-blue-800 h-12">
+          <h3 className="mt-8 text-xl capitalize font-medium text-blue-800 h-12">
             {title.substring(0, 40)}
           </h3>
-          <p className="text-gray-500 my-2 ">
-            {`${content.substring(0, 80)}`}
-            ...
-          </p>
         </div>
       </article>
     </Link>

@@ -1,30 +1,18 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
 import BlogItem from "./BlogItem";
 
-const BlogList = ({ blogs }) => {
-  const [images, setImages] = useState([]);
-  useEffect(() => {
-    fetch(
-      `https://picsum.photos/v2/list?page=2&limit=${blogs.length}?grayscale`,
-    )
-      .then((res) => res.json())
-      .then((data) => setImages(data))
-      .catch((err) => console.log(err));
-    console.log(images);
-  }, []);
-
+const BlogList = ({ blogs, images }) => {
   if (!blogs) {
     <div>Nothing found</div>;
   }
   return (
-    <div className="mt-16 px-8 sm:px-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-14 py-5">
-      {blogs.map(({ data, content, slug, id }, index) => {
+    <div className="mt-10 sm:mt-16   grid grid-cols-1 md:grid-cols-2  gap-10 py-5">
+      {blogs.map(({ data, content, slug }, index) => {
         return (
           <BlogItem
-            image={images[index]}
             slug={slug}
             title={data.title}
-            key={id}
+            key={slug}
+            image={images[index]}
             content={content}
           />
         );

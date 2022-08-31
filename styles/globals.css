@@ -6,6 +6,9 @@
   .post:hover .post__image {
     @apply border-2 border-blue-500 p-2 transition-all ease-in-out;
   }
+  .post:hover .post__image-tags {
+    @apply opacity-100;
+  }
 
   .tag {
     @apply cursor-pointer px-4 py-1 md:px-5 md:py-2 rounded-full md:font-medium;

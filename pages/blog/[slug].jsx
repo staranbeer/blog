@@ -2,10 +2,10 @@ import React from "react";
 import { HiOutlineArrowLeft, HiOutlineExternalLink } from "react-icons/hi";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
-import { useRouter } from "next/router";
 import { getBlogBySlug, getAllSlugs } from "../../lib/utils";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/nightOwl";
+import Link from "next/link";
 
 export async function getStaticProps({ params }) {
   const post = getBlogBySlug(params.slug);
@@ -20,7 +20,7 @@ export async function getStaticProps({ params }) {
     },
   );
   image = await image.json();
-  image = await image.photos;
+  image = await image?.photos;
   return {
     props: {
       data: {
@@ -62,24 +62,21 @@ const Slug = (props) => {
       );
     },
   };
-  const router = useRouter();
   const { title, content, image } = props.data;
   if (!props.data) {
     return <div>Nothing found</div>;
   }
   return (
-    <div className="max-w-xl mx-auto">
+    <div className="max-w-2xl mx-auto">
       {/* thumbnail */}
       <div className="relative">
-        <div
-          className="p-2 cursor-pointer inline-block bg-gray-100"
-          onClick={() => {
-            router.back();
-          }}
-        >
-          <HiOutlineArrowLeft size={20} />
-        </div>
-        <div className="w-full h-[400px]">
+        <Link href="/blog">
+          <a className="p-2  cursor-pointer  bg-gray-100  my-2 inline-flex items-center gap-4">
+            <HiOutlineArrowLeft size={20} />
+            <span>Home</span>
+          </a>
+        </Link>
+        <div className="aspect-square sm:aspect-auto w-full  h-[350px] sm:[400px]">
           <img
             src={image.src.landscape}
             alt={image.alt}
@@ -104,9 +101,9 @@ const Slug = (props) => {
       {/* title */}
       <div className="flex justify-between py-4 text-gray-500 ">
         <div>Author: </div>
-        <div>TimeStamp:</div>1
+        <div>TimeStamp:</div>
       </div>
-      <h1 className="text-3xl font-medium mt-6">{title}</h1>
+      <h1 className="text-3xl font-medium my-6">{title}</h1>
       {/* desciption */}
       <div className="prose max-w-full">
         <MDXRemote {...content} components={components} />

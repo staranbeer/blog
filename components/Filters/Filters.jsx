@@ -1,17 +1,23 @@
 import React, { useState } from "react";
+import { useRef } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 const tags = ["All", "Design", "Development"];
 const Filters = () => {
   const [selectedFilter, setSelectedFilter] = useState("All");
+  const inputRef = useRef(null);
 
   return (
     <div className="filters mt-10 flex-col md:flex-row flex gap-4 justify-between">
       {/* search bar */}
-      <div className="search gap-3 flex bg-gray-200 p-2 px-4 items-center rounded-full border-2 border-gray-200 hover:border-blue-500">
+      <div
+        className="search gap-3 flex bg-gray-100 p-2 px-4 items-center rounded-full border-2 border-gray-100 hover:border-blue-500"
+        onClick={() => inputRef.current.focus()}
+      >
         <HiOutlineSearch />
         <input
+          ref={inputRef}
           type="text"
-          className="bg-gray-200 w-full outline-none"
+          className="bg-gray-100 w-full outline-none"
           placeholder="Search"
         />
       </div>
