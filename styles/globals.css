@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .post:hover .post__image {
+    @apply border-2 border-blue-500 p-2 transition-all ease-in-out;
+  }
+}
