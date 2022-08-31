@@ -4,16 +4,71 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import { useRouter } from "next/router";
 import { getBlogBySlug, getAllSlugs } from "../../lib/utils";
-import rehypePrettyCode from "rehype-pretty-code";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import theme from "prism-react-renderer/themes/nightOwl";
+
+export async function getStaticProps({ params }) {
+  const post = getBlogBySlug(params.slug);
+  const mdxSource = await serialize(post.content);
+
+  let image = await fetch(
+    "https://api.pexels.com/v1/search?query=mountains&page=1&per_page=1",
+    {
+      headers: {
+        Authorization: `${process.env.PEXELS_API_KEY}`,
+      },
+    },
+  );
+  image = await image.json();
+  image = await image.photos;
+  return {
+    props: {
+      data: {
+        title: post.data.title,
+        slug: post.slug,
+        content: mdxSource,
+        image: image[0],
+      },
+    },
+  };
+}
 
 const Slug = (props) => {
+  const components = {
+    code: function code({ className, ...props }) {
+      return (
+        <Highlight
+          {...defaultProps}
+          theme={theme}
+          code={props.children}
+          language={`${className.split("-")[1]}`}
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={className} style={style}>
+              {tokens.map((line, i) => {
+                if (i < line.length) {
+                  return (
+                    <div {...getLineProps({ line, key: i })}>
+                      {line.map((token, key) => (
+                        <span {...getTokenProps({ token, key })} />
+                      ))}
+                    </div>
+                  );
+                }
+              })}
+            </pre>
+          )}
+        </Highlight>
+      );
+    },
+  };
   const router = useRouter();
   const { title, content, image } = props.data;
   if (!props.data) {
     return <div>Nothing found</div>;
   }
   return (
-    <div className=" ">
+    <div className="max-w-xl mx-auto">
       {/* thumbnail */}
       <div className="relative">
         <div
@@ -49,43 +104,16 @@ const Slug = (props) => {
       {/* title */}
       <div className="flex justify-between py-4 text-gray-500 ">
         <div>Author: </div>
-        <div>TimeStamp:</div>
+        <div>TimeStamp:</div>1
       </div>
       <h1 className="text-3xl font-medium mt-6">{title}</h1>
       {/* desciption */}
-      <MDXRemote {...content} />
+      <div className="prose max-w-full">
+        <MDXRemote {...content} components={components} />
+      </div>
     </div>
   );
 };
-
-export async function getStaticProps({ params }) {
-  const post = getBlogBySlug(params.slug);
-  console.log(post.content);
-  const mdxSource = await serialize(post.content, {
-    rehypePlugins: [[rehypePrettyCode, {}]],
-  });
-
-  let image = await fetch(
-    "https://api.pexels.com/v1/search?query=mountains&page=1&per_page=1",
-    {
-      headers: {
-        Authorization: `${process.env.PEXELS_API_KEY}`,
-      },
-    },
-  );
-  image = await image.json();
-  image = await image.photos;
-  return {
-    props: {
-      data: {
-        title: post.data.title,
-        slug: post.slug,
-        content: mdxSource,
-        image: image[0],
-      },
-    },
-  };
-}
 
 export async function getStaticPaths() {
   const slugs = getAllSlugs();

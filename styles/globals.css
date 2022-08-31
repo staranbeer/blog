@@ -10,4 +10,16 @@
   .tag {
     @apply cursor-pointer px-4 py-1 md:px-5 md:py-2 rounded-full md:font-medium;
   }
+
+  .tag {
+    @apply mx-0.5 px-0 !important;
+  }
+
+  .token.plain-text {
+    @apply mx-4 !important;
+  }
+
+  .prose :where(pre):not(:where([class~="not-prose"] *)) {
+    @apply p-4 m-0  !important;
+  }
 }

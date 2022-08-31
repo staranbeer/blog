@@ -20,7 +20,7 @@ const Index = ({ blogs }) => {
     return <div>nothing found</div>;
   }
   return (
-    <>
+    <div className="max-w-5xl mx-auto">
       <Header />
       <Hero />
       <Filters />
@@ -31,7 +31,7 @@ const Index = ({ blogs }) => {
         <div className="footer__left">left</div>
         <div className="footer__right">right</div>
       </footer>
-    </>
+    </div>
   );
 };
 
