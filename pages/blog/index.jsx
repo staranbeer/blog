@@ -1,11 +1,19 @@
+import { getAllBlogs } from "../../lib/utils";
 import React from "react";
 import BlogList from "../../components/Blog/BlogList";
 import Header from "../../components/Header/Header";
-import fs from "fs";
-import path from "path";
 import Hero from "../../components/Hero/Hero";
 import Filters from "../../components/Filters/Filters";
-import Featured from "../../components/Featured/Featured";
+
+export async function getStaticProps() {
+  const blogs = getAllBlogs();
+  console.log(blogs[0]);
+  return {
+    props: {
+      blogs: blogs,
+    },
+  };
+}
 
 const Index = ({ blogs }) => {
   if (!blogs) {
@@ -16,8 +24,6 @@ const Index = ({ blogs }) => {
       <Header />
       <Hero />
       <Filters />
-      {/* featured carousal */}
-      <Featured />
       <BlogList blogs={blogs} />
 
       <div className="pagination"></div>
@@ -28,18 +34,5 @@ const Index = ({ blogs }) => {
     </>
   );
 };
-
-export async function getStaticProps() {
-  let res = fs.readFileSync(
-    path.join(process.cwd(), "data", "blogs.json"),
-    "utf8",
-  );
-  res = JSON.parse(res);
-  return {
-    props: {
-      blogs: res,
-    },
-  };
-}
 
 export default Index;

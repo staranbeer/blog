@@ -1,8 +1,11 @@
 import React from "react";
-import fs from "fs";
-import path from "path";
 import { HiOutlineArrowLeft, HiOutlineExternalLink } from "react-icons/hi";
+import { serialize } from "next-mdx-remote/serialize";
+import { MDXRemote } from "next-mdx-remote";
 import { useRouter } from "next/router";
+import { getBlogBySlug, getAllSlugs } from "../../lib/utils";
+import rehypePrettyCode from "rehype-pretty-code";
+
 const Slug = (props) => {
   const router = useRouter();
   const { title, content, image } = props.data;
@@ -50,60 +53,48 @@ const Slug = (props) => {
       </div>
       <h1 className="text-3xl font-medium mt-6">{title}</h1>
       {/* desciption */}
-      <div className="mt-3">
-        {content} Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Numquam nesciunt provident aliquam? Ex, eius tenetur quae labore
-        voluptatum harum accusamus cupiditate provident nobis illum quasi,
-        consectetur quidem, suscipit quos. Itaque quo iure aut aliquid, ex nihil
-        libero debitis at saepe!
-      </div>
+      <MDXRemote {...content} />
     </div>
   );
 };
 
 export async function getStaticProps({ params }) {
-  try {
-    const { slug } = params;
-    const content = fs.readFileSync(
-      path.join(process.cwd(), "data", "blogs.json"),
-      "utf8",
-    );
-    const res = JSON.parse(content).filter((item) => item.slug === slug)[0];
-    let image = await fetch(
-      "https://api.pexels.com/v1/search?query=mountains&page=1&per_page=1",
-      {
-        headers: {
-          Authorization: `${process.env.PEXELS_API_KEY}`,
-        },
-      },
-    );
+  const post = getBlogBySlug(params.slug);
+  console.log(post.content);
+  const mdxSource = await serialize(post.content, {
+    rehypePlugins: [[rehypePrettyCode, {}]],
+  });
 
-    image = await image.json();
-    image = await image.photos;
-    return {
-      props: {
-        data: { ...res, image: image[0] },
+  let image = await fetch(
+    "https://api.pexels.com/v1/search?query=mountains&page=1&per_page=1",
+    {
+      headers: {
+        Authorization: `${process.env.PEXELS_API_KEY}`,
       },
-    };
-  } catch (err) {
-    return {
-      props: {},
-    };
-  }
+    },
+  );
+  image = await image.json();
+  image = await image.photos;
+  return {
+    props: {
+      data: {
+        title: post.data.title,
+        slug: post.slug,
+        content: mdxSource,
+        image: image[0],
+      },
+    },
+  };
 }
 
-export async function getStaticPaths({ params }) {
-  const pathsFile = fs.readFileSync(
-    path.join(process.cwd(), "data", "blogs.json"),
-    "utf8",
-  );
-  const paths = JSON.parse(pathsFile).map((blog) => ({
-    params: {
-      slug: blog.slug || [],
-    },
+export async function getStaticPaths() {
+  const slugs = getAllSlugs();
+
+  const slugsPaths = slugs.map((slug) => ({
+    params: { slug: slug },
   }));
   return {
-    paths: paths,
+    paths: slugsPaths,
     fallback: false,
   };
 }

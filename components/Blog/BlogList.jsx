@@ -17,13 +17,13 @@ const BlogList = ({ blogs }) => {
     <div>Nothing found</div>;
   }
   return (
-    <div className=" px-8 sm:px-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-14 py-5">
-      {blogs.map(({ title, content, slug, id }, index) => {
+    <div className="mt-16 px-8 sm:px-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-14 py-5">
+      {blogs.map(({ data, content, slug, id }, index) => {
         return (
           <BlogItem
             image={images[index]}
             slug={slug}
-            title={title}
+            title={data.title}
             key={id}
             content={content}
           />
