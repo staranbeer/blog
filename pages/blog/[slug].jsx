@@ -1,8 +1,10 @@
 import React from "react";
 import fs from "fs";
 import path from "path";
-import { HiOutlineExternalLink } from "react-icons/hi";
+import { HiOutlineArrowLeft, HiOutlineExternalLink } from "react-icons/hi";
+import { useRouter } from "next/router";
 const Slug = (props) => {
+  const router = useRouter();
   const { title, content, image } = props.data;
   if (!props.data) {
     return <div>Nothing found</div>;
@@ -10,7 +12,15 @@ const Slug = (props) => {
   return (
     <div className=" ">
       {/* thumbnail */}
-      <div className="relative bg-blue-400">
+      <div className="relative">
+        <div
+          className="p-2 cursor-pointer inline-block bg-gray-100"
+          onClick={() => {
+            router.back();
+          }}
+        >
+          <HiOutlineArrowLeft size={20} />
+        </div>
         <div className="w-full h-[400px]">
           <img
             src={image.src.landscape}
@@ -60,7 +70,7 @@ export async function getStaticProps({ params }) {
     );
     const res = JSON.parse(content).filter((item) => item.slug === slug)[0];
     let image = await fetch(
-      "https://api.pexels.com/v1/search?query=animals&page=1&per_page=1",
+      "https://api.pexels.com/v1/search?query=mountains&page=1&per_page=1",
       {
         headers: {
           Authorization: `${process.env.PEXELS_API_KEY}`,
@@ -92,7 +102,6 @@ export async function getStaticPaths({ params }) {
       slug: blog.slug || [],
     },
   }));
-  console.log(paths);
   return {
     paths: paths,
     fallback: false,
