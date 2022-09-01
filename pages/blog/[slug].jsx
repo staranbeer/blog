@@ -34,6 +34,8 @@ export async function getStaticProps({ params }) {
 }
 
 const Slug = (props) => {
+  const router = useRouter();
+
   const components = {
     code: function code({ className, ...props }) {
       return (
@@ -66,7 +68,6 @@ const Slug = (props) => {
   if (!props.data) {
     return <div>Nothing found</div>;
   }
-  const router = useRouter();
   return (
     <div className="max-w-2xl mx-auto">
       {/* thumbnail */}

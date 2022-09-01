@@ -30,16 +30,11 @@ export async function getStaticProps() {
 }
 
 const Index = ({ blogs, images }) => {
+  const [posts, setPosts] = useState(blogs);
+  const [filteredPosts, setFilteredPosts] = useState(posts);
   if (!blogs) {
     return <div>nothing found</div>;
   }
-
-  const [posts, setPosts] = useState(blogs);
-  const [filteredPosts, setFilteredPosts] = useState(posts);
-  function filterByTag(tag) {
-    setPosts((prevPosts) => prevPosts.filter((post) => post.tag === tag));
-  }
-
   function filterBySearch(searchTerm) {
     let filtered = posts.filter((post) => {
       return post.data.title.toLowerCase().includes(searchTerm);
