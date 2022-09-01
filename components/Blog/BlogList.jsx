@@ -1,4 +1,3 @@
-import { useState } from "react";
 import BlogItem from "./BlogItem";
 
 const BlogList = ({ blogs, images }) => {
@@ -18,6 +17,7 @@ const BlogList = ({ blogs, images }) => {
             slug={slug}
             title={data.title}
             key={slug}
+            tags={data.tags}
             image={images[index]}
             content={content}
           />

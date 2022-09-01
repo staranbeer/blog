@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-const BlogItem = ({ title, slug, image, content }) => {
+const BlogItem = ({ title, slug, image, tags }) => {
   return (
     <Link href={`/blog/${slug}`}>
       <article className="post cursor-pointer  shadow-md py-10 p-6">
@@ -12,8 +12,11 @@ const BlogItem = ({ title, slug, image, content }) => {
           />
           <div className="post__image-tags absolute w-full h-full bg-[#0009] left-0 top-0 grid place-items-center opacity-0 transition-all">
             <div className="flex gap-4">
-              <div className="tag bg-white">design</div>
-              <div className="tag bg-white">development</div>
+              {tags.map((tag) => (
+                <div className="tag bg-white" key={tag}>
+                  {tag}
+                </div>
+              ))}
             </div>
           </div>
         </div>

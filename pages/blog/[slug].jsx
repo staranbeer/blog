@@ -5,7 +5,7 @@ import { MDXRemote } from "next-mdx-remote";
 import { getBlogBySlug, getAllSlugs } from "../../lib/utils";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/nightOwl";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 export async function getStaticProps({ params }) {
   const post = getBlogBySlug(params.slug);
@@ -66,16 +66,18 @@ const Slug = (props) => {
   if (!props.data) {
     return <div>Nothing found</div>;
   }
+  const router = useRouter();
   return (
     <div className="max-w-2xl mx-auto">
       {/* thumbnail */}
       <div className="relative">
-        <Link href="/">
-          <a className="p-2  cursor-pointer  bg-gray-100  my-2 inline-flex items-center gap-4">
-            <HiOutlineArrowLeft size={20} />
-            <span>Home</span>
-          </a>
-        </Link>
+        <button
+          onClick={() => router.back()}
+          className="p-2  cursor-pointer  bg-gray-100  my-2 inline-flex items-center gap-4"
+        >
+          <HiOutlineArrowLeft size={20} />
+          <span>Home</span>
+        </button>
         <div className="aspect-square sm:aspect-auto w-full  h-[350px] sm:[400px]">
           <img
             src={image.src.landscape}

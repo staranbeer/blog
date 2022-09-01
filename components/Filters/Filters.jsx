@@ -1,7 +1,9 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { useRef } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
-const tags = ["All", "Design", "Development"];
+
+const tags = ["design", "development"];
 
 const Filters = ({ filterBySearch }) => {
   const [selectedFilter, setSelectedFilter] = useState("All");
@@ -30,16 +32,18 @@ const Filters = ({ filterBySearch }) => {
       </div>
       {/* tags */}
       <div className="flex items-center flex-wrap gap-3">
+        <div className="tag bg-blue-500 text-white cursor-default">All</div>
         {tags.map((tag) => (
-          <button
-            onClick={() => setSelectedFilter(tag)}
-            key={tag}
-            className={`tag bg-gray-100 ${
-              selectedFilter === tag ? "bg-blue-500 text-white" : ""
-            }`}
-          >
-            {tag}
-          </button>
+          <Link href={`/blog/tags/${tag}`} key={tag}>
+            <a
+              onClick={() => setSelectedFilter(tag)}
+              className={`tag bg-gray-100 capitalize ${
+                selectedFilter === tag ? "bg-blue-500 text-white" : ""
+              }`}
+            >
+              {tag}
+            </a>
+          </Link>
         ))}
       </div>
     </div>
