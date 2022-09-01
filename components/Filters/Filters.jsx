@@ -11,7 +11,7 @@ const Filters = ({ filterBySearch }) => {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <div className="filters mt-10 flex-col md:flex-row flex gap-4 justify-between">
+    <div className="filters  flex-col md:flex-row flex gap-4 justify-between">
       {/* search bar */}
       <div
         className="search gap-3 flex bg-gray-100 p-2 px-4 items-center rounded-full border-2 border-gray-100 hover:border-blue-500"

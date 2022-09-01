@@ -11,7 +11,10 @@
   }
 
   .tag {
-    @apply cursor-pointer px-4 py-1 md:px-5 md:py-2 rounded-full md:font-medium;
+    @apply cursor-pointer px-4 py-1 md:px-5 md:py-2 rounded-full md:font-medium focus:text-current;
+  }
+  a.tag {
+    @apply active:translate-y-1;
   }
 
   pre .tag {
