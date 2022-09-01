@@ -70,7 +70,7 @@ const Slug = (props) => {
     <div className="max-w-2xl mx-auto">
       {/* thumbnail */}
       <div className="relative">
-        <Link href="/blog">
+        <Link href="/">
           <a className="p-2  cursor-pointer  bg-gray-100  my-2 inline-flex items-center gap-4">
             <HiOutlineArrowLeft size={20} />
             <span>Home</span>

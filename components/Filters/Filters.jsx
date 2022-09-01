@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 const tags = ["All", "Design", "Development"];
-const Filters = () => {
+
+const Filters = ({ filterBySearch }) => {
   const [selectedFilter, setSelectedFilter] = useState("All");
   const inputRef = useRef(null);
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <div className="filters mt-10 flex-col md:flex-row flex gap-4 justify-between">
@@ -15,6 +17,11 @@ const Filters = () => {
       >
         <HiOutlineSearch />
         <input
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            filterBySearch(e.target.value);
+          }}
           ref={inputRef}
           type="text"
           className="bg-gray-100 w-full outline-none"

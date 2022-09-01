@@ -1,5 +1,5 @@
 import { getAllBlogs } from "../lib/utils";
-import React from "react";
+import React, { useState } from "react";
 import BlogList from "./../components/Blog/BlogList";
 import Header from "./../components/Header/Header";
 import Hero from "./../components/Hero/Hero";
@@ -34,12 +34,25 @@ const Index = ({ blogs, images }) => {
     return <div>nothing found</div>;
   }
 
+  const [posts, setPosts] = useState(blogs);
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+  function filterByTag(tag) {
+    setPosts((prevPosts) => prevPosts.filter((post) => post.tag === tag));
+  }
+
+  function filterBySearch(searchTerm) {
+    let filtered = posts.filter((post) => {
+      return post.data.title.toLowerCase().includes(searchTerm);
+    });
+    setFilteredPosts(filtered);
+  }
+
   return (
     <div className="max-w-5xl mx-auto">
-      <Header />
+      {/* <Header /> */}
       <Hero />
-      <Filters />
-      <BlogList blogs={blogs} images={images} />
+      <Filters filterBySearch={filterBySearch} />
+      <BlogList blogs={filteredPosts} images={images} />
 
       <div className="pagination"></div>
       <footer className="flex justify-between items-center p-4">
