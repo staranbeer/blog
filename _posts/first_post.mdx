@@ -1,59 +1,90 @@
 ---
-title: Is that you? Doctor who!
+title: Button
 slug: first_post.mdx
 tags:
   - design
   - development
 ---
 
-It's art! A statement on modern society, 'Oh Ain't Modern Society Awful?'! I am the last of my species, and I know how that weighs on the heart so don't lie to me! Aw, you're all Mr. Grumpy Face today.
+Buttons allow users to interact with a website and perform actions like logging In, ordering food, and booking tickets.
 
-I am the Doctor, and you are the Daleks! **I'm the Doctor, I'm worse than everyone's aunt.** \*_catches himself_ And that is not how I'm introducing myself.\* You know how I sometimes have really brilliant ideas?
+Designed and maintained by a vibrant community of developers, Jenga Ui's Button component provides an out-of-the-box solution to most of your design and accessibility needs.
+
+## Type
+
+The Button component's primary variant is the perfect candidate for your typical call-to-action or any link you want to direct your users to.
 
 ```jsx
-<button>Click me or perish</button>
+<Button> Submit </Button>
 ```
 
-## You hit me with a cricket bat.
+To alter the appearance of the default Button component, use the type prop. click here to get [[a list of available types]].
 
-I'm the Doctor. Well, they call me the Doctor. I don't know why. I call me the Doctor too. I still don't know why. I am the Doctor, and you are the Daleks! I'm the Doctor, I'm worse than everyone's aunt. _catches himself_ And that is not how I'm introducing myself.
+```jsx
 
-```css
-h1 {
-  color: red;
-}
+<Button type="secondary"> Submit </Button>
+<Button type="clear"> Submit </Button>
+<Button type="outline"> Submit </Button>
+
 ```
 
-1. It's art! A statement on modern society, 'Oh Ain't Modern Society Awful?'!
-2. You know how I sometimes have really brilliant ideas?
-3. Father Christmas. Santa Claus. Or as I've always known him: Jeff.
+## SIze
 
-### You know when grown-ups tell you 'everything's going to be fine' and you think they're probably lying to make you feel better?
+To change the dimensions of a button, use the size prop. Click here to get [[a list of available sizes]]
 
-Sorry, checking all the water in this area; there's an escaped fish. I'm nobody's taxi service; I'm not gonna be there to catch you every time you feel like jumping out of a spaceship. You hate me; you want to kill me! Well, go on! Kill me! KILL ME!
+```jsx
+<Button size="small"> Submit </Button>
+```
 
-- Stop talking, brain thinking. Hush.
-- They're not aliens, they're Earth…liens!
-- It's art! A statement on modern society, 'Oh Ain't Modern Society Awful?'!
+## Modifiers
 
-It's art! A statement on modern society, 'Oh Ain't Modern Society Awful?'! Father Christmas. Santa Claus. Or as I've always known him: Jeff. Heh-haa! Super squeaky bum time! I'm the Doctor. Well, they call me the Doctor. I don't know why. I call me the Doctor too. I still don't know why.
+### isLoading
 
-Saving the world with meals on wheels. You know how I sometimes have really brilliant ideas? I'm the Doctor, I'm worse than everyone's aunt. _catches himself_ And that is not how I'm introducing myself.
+You can use the "isLoading" prop to trigger the Button's loading state and display a loading indicator accordingly.
 
-I'm the Doctor. Well, they call me the Doctor. I don't know why. I call me the Doctor too. I still don't know why. No… It's a thing; it's like a plan, but with more greatness. I hate yogurt. It's just stuff with bits in.
+### isDisabled
 
-Aw, you're all Mr. Grumpy Face today. The way I see it, every life is a pile of good things and bad things.…hey.…the good things don't always soften the bad things; but vice-versa the bad things don't necessarily spoil the good things and make them unimportant.
+Use the "isDisabled" prop to make the Button unclickable to prevent unnecessary user interactions. [[Click here to get a list of available modifiers]].
 
-You hit me with a cricket bat. The way I see it, every life is a pile of good things and bad things.…hey.…the good things don't always soften the bad things; but vice-versa the bad things don't necessarily spoil the good things and make them unimportant.
+```jsx
 
-No, I'll fix it. I'm good at fixing rot. Call me the Rotmeister. No, I'm the Doctor. Don't call me the Rotmeister. Annihilate? No. No violence. I won't stand for it. Not now, not ever, do you understand me?! I'm the Doctor, the Oncoming Storm - and you basically meant beat them in a football match, didn't you?
+<Button type="secondary"> Submit </Button>
+<Button type="clear"> Submit </Button>
+<Button type="outline"> Submit </Button>
 
-Aw, you're all Mr. Grumpy Face today. Annihilate? No. No violence. I won't stand for it. Not now, not ever, do you understand me?! I'm the Doctor, the Oncoming Storm - and you basically meant beat them in a football match, didn't you?
+```
 
-Father Christmas. Santa Claus. Or as I've always known him: Jeff. I hate yogurt. It's just stuff with bits in. You've swallowed a planet! Sorry, checking all the water in this area; there's an escaped fish.
+## Icons
 
-Heh-haa! Super squeaky bum time! I hate yogurt. It's just stuff with bits in. I'm the Doctor. Well, they call me the Doctor. I don't know why. I call me the Doctor too. I still don't know why. I'm the Doctor. Well, they call me the Doctor. I don't know why. I call me the Doctor too. I still don't know why.
+To render an icon right next to your button, you can use the "rightIcon" prop.
 
-Aw, you're all Mr. Grumpy Face today. I am the Doctor, and you are the Daleks! I hate yogurt. It's just stuff with bits in. You hate me; you want to kill me! Well, go on! Kill me! KILL ME! I'm nobody's taxi service; I'm not gonna be there to catch you every time you feel like jumping out of a spaceship.
+```jsx
+<Button rightIcon={<HiOutlineSun />}> Submit </Button>
+```
 
-I am the last of my species, and I know how that weighs on the heart so don't lie to me! You've swallowed a planet! It's art! A statement on modern society, 'Oh Ain't Modern Society Awful?'! No… It's a thing; it's like a plan, but with more greatness.
+Or, just use the "icon" prop to display a button with no child elements.
+
+```jsx
+
+<Button icon={<HiOutlineSun /> label="Sun"}> Submit </Button>
+
+```
+
+Keep in mind that If you don't pass in a label prop while creating buttons with icons and no children, you will get this (rather helpful) warning in the console.
+
+> 'If you provide `icon` property for a Button and do not provide any children, then you should specify the `label` property to make sure the Button element stays accessible.',
+
+## as
+
+When using the Button component, it is possible to replace the HTML element that will eventually render on your user's screen (instead of the default button element) with the help of the "as" prop.
+
+```jsx
+
+<Button> Submit </Button>
+<Button as="a"> Submit </Button>
+
+```
+
+If you inspect the above example in your browser's dev tools, you'll find that one of the buttons is an HTML "a" element while the other is the default button element, even though they look the same.
+
+> Although it is possible to provide the name of any valid HTML element as the value of the "as" prop, in some cases doing so may result in poor accessibility.

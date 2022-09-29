@@ -17,7 +17,7 @@ export async function getStaticProps({ params }) {
       headers: {
         Authorization: `${process.env.PEXELS_API_KEY}`,
       },
-    },
+    }
   );
   image = await image.json();
   image = await image?.photos;
@@ -43,7 +43,7 @@ const Slug = (props) => {
           {...defaultProps}
           theme={theme}
           code={props.children}
-          language={`${className.split("-")[1]}`}
+          language={`jsx`}
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <pre className={className} style={style}>

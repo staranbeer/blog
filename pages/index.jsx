@@ -1,9 +1,8 @@
 import { getAllBlogs } from "../lib/utils";
 import React, { useState } from "react";
-import BlogList from "./../components/Blog/BlogList";
-import Header from "./../components/Header/Header";
-import Hero from "./../components/Hero/Hero";
-import Filters from "./../components/Filters/Filters";
+import BlogList from "../components/Blog/BlogList";
+import Hero from "../components/Hero/Hero";
+import Filters from "../components/Filters/Filters";
 
 export async function getStaticProps() {
   const blogs = getAllBlogs();
@@ -13,7 +12,7 @@ export async function getStaticProps() {
       headers: {
         Authorization: `${process.env.PEXELS_API_KEY}`,
       },
-    },
+    }
   );
   images = await images.json();
   images = images?.photos?.map((image) => ({
