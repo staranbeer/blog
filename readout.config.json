@@ -1,12 +1,12 @@
 {
     "navigation": {
-      "groups": {
+      "groups":[ {
         "name": "one",
         "navLinks": [
           { "name": "page One", "path": "index.mdx" },
           { "name": "page two", "path": "second_post.mdx" }
         ]
-      }
+      }]
     }
   }
   
