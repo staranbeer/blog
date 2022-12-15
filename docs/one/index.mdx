@@ -1,0 +1,90 @@
+---
+title: Button
+slug: first_post.mdx
+tags:
+  - design
+  - development
+---
+
+Buttons allow users to interact with a website and perform actions like logging In, ordering food, and booking tickets.
+
+Designed and maintained by a vibrant community of developers, Jenga Ui's Button component provides an out-of-the-box solution to most of your design and accessibility needs.
+
+## Type
+
+The Button component's primary variant is the perfect candidate for your typical call-to-action or any link you want to direct your users to.
+
+```jsx
+<Button> Submit </Button>
+```
+
+To alter the appearance of the default Button component, use the type prop. click here to get [[a list of available types]].
+
+```jsx
+
+<Button type="secondary"> Submit </Button>
+<Button type="clear"> Submit </Button>
+<Button type="outline"> Submit </Button>
+
+```
+
+## SIze
+
+To change the dimensions of a button, use the size prop. Click here to get [[a list of available sizes]]
+
+```jsx
+<Button size="small"> Submit </Button>
+```
+
+## Modifiers
+
+### isLoading
+
+You can use the "isLoading" prop to trigger the Button's loading state and display a loading indicator accordingly.
+
+### isDisabled
+
+Use the "isDisabled" prop to make the Button unclickable to prevent unnecessary user interactions. [[Click here to get a list of available modifiers]].
+
+```jsx
+
+<Button type="secondary"> Submit </Button>
+<Button type="clear"> Submit </Button>
+<Button type="outline"> Submit </Button>
+
+```
+
+## Icons
+
+To render an icon right next to your button, you can use the "rightIcon" prop.
+
+```jsx
+<Button rightIcon={<HiOutlineSun />}> Submit </Button>
+```
+
+Or, just use the "icon" prop to display a button with no child elements.
+
+```jsx
+
+<Button icon={<HiOutlineSun /> label="Sun"}> Submit </Button>
+
+```
+
+Keep in mind that If you don't pass in a label prop while creating buttons with icons and no children, you will get this (rather helpful) warning in the console.
+
+> 'If you provide icon property for a Button and do not provide any children, then you should specify the label property to make sure the Button element stays accessible.',
+
+## as
+
+When using the Button component, it is possible to replace the HTML element that will eventually render on your user's screen (instead of the default button element) with the help of the "as" prop.
+
+```jsx
+
+<Button> Submit </Button>
+<Button as="a"> Submit </Button>
+
+```
+
+If you inspect the above example in your browser's dev tools, you'll find that one of the buttons is an HTML "a" element while the other is the default button element, even though they look the same.
+
+> Although it is possible to provide the name of any valid HTML element as the value of the "as" prop, in some cases doing so may result in poor accessibility.
