@@ -3,7 +3,13 @@
       "groups":[ {
         "name": "one",
         "navLinks": [
-          { "name": "page One", "path": "index.mdx" },
+          { "name": "page One", "path": "first_post.mdx" },
+          { "name": "page two", "path": "second_post.mdx" }
+        ]
+      }, {
+        "name": "two",
+        "navLinks": [
+          { "name": "page One", "path": "first_post.mdx" },
           { "name": "page two", "path": "second_post.mdx" }
         ]
       }]
