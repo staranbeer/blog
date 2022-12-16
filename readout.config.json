@@ -1,5 +1,8 @@
 {
     "navigation": {
+      "navLinks": [
+          { "name": "outside One", "path": "outside_one.mdx" },
+          { "name": "outside two", "path": "outside_two.mdx" }],
       "groups":[ {
         "name": "one",
         "navLinks": [
